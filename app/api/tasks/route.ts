@@ -1,35 +1,67 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
 import { tasks } from "@/lib/db/schema";
 import ApiError from "@/lib/apiError";
+import { withErrorHandler } from "@/lib/api-handler";
+import { createTaskSchema } from "@/lib/validation";
 
 // get all the tasks
-export async function GET() {
-  try {
-    const allTodo = await db
-      .select({
-        id: tasks.id,
-        title: tasks.title,
-        description: tasks.description,
-        isCompleted: tasks.isCompleted,
-        projectId: tasks.projectId,
-        createdAt: tasks.createdAt,
-      })
-      .from(tasks);
+export const GET = withErrorHandler(async () => {
+  const allTasks = await db
+    .select({
+      id: tasks.id,
+      title: tasks.title,
+      isCompleted: tasks.isCompleted,
+      projectId: tasks.projectId,
+      createdAt: tasks.createdAt,
+    })
+    .from(tasks);
 
-    // validation
-    if (allTodo.length === 0) {
-      throw ApiError.NOT_FOUND("Items not Found");
-    }
-
-    return NextResponse.json(
-      {
-        success: true,
-        data: allTodo,
-      },
-      { status: 200 },
-    );
-  } catch (error) {
-    console.log("Error occured while feting all Todo:", error);
+  // if not task found
+  if (allTasks.length === 0) {
+    throw ApiError.NOT_FOUND("No tasks found");
   }
-}
+
+  return NextResponse.json(
+    {
+      success: true,
+      data: allTasks,
+    },
+    { status: 200 },
+  );
+});
+
+export const POST = withErrorHandler(async (request) => {
+  const body = await request.json();
+
+  const bodyValidation = await createTaskSchema.safeParseAsync(body);
+
+  console.log(bodyValidation);
+
+  if (bodyValidation.error) {
+    throw ApiError.BAD_REQUEST(
+      "Request body validation failed",
+      bodyValidation.error?.issues[0].message,
+    );
+  }
+
+  const { title, projectId } = bodyValidation.data;
+
+  const createdTask = await db
+    .insert(tasks)
+    .values({ title, projectId })
+    .returning({
+      id: tasks.id,
+      title: tasks.title,
+      isCompleted: tasks.isCompleted,
+      projectId: tasks.projectId,
+    });
+
+  return NextResponse.json(
+    {
+      success: true,
+      data: createdTask,
+    },
+    { status: 201 },
+  );
+});

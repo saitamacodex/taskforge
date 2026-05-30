@@ -16,7 +16,6 @@ export const tasks = pgTable("tasks", {
   id: uuid("id").primaryKey().defaultRandom(),
   title: text("title").notNull(),
   isCompleted: boolean("is_completed").default(false).notNull(),
-  description: text("description"),
 
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at")

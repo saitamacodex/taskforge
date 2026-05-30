@@ -1,7 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 import ApiError from "./apiError";
 
-type Handler = (req: NextRequest, ctx?: unknown) => Promise<NextResponse>;
+type RouteContext = {
+  params: Promise<Record<string, string>>;
+};
+
+type Handler = (req: NextRequest, ctx?: RouteContext) => Promise<NextResponse>;
 
 export function withErrorHandler(handler: Handler): Handler {
   return async (req, ctx) => {
@@ -11,12 +15,17 @@ export function withErrorHandler(handler: Handler): Handler {
       // known API error
       if (error instanceof ApiError) {
         return NextResponse.json(
-          { success: false, message: error.message },
+          {
+            success: false,
+            message: error.message,
+            errors: error.error,
+          },
           { status: error.statusCode },
         );
       }
 
-      // unknown error - lot it and return 500
+      // unknown error
+      console.error("Unexpected error:", error);
       return NextResponse.json(
         {
           success: false,

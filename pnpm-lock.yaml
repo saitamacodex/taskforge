@@ -26,6 +26,9 @@ importers:
       react-dom:
         specifier: 19.2.4
         version: 19.2.4(react@19.2.4)
+      zod:
+        specifier: ^4.4.3
+        version: 4.4.3
     devDependencies:
       '@tailwindcss/postcss':
         specifier: ^4
@@ -33,9 +36,6 @@ importers:
       '@types/node':
         specifier: ^20
         version: 20.19.41
-      '@types/pg':
-        specifier: ^8.20.0
-        version: 8.20.0
       '@types/react':
         specifier: ^19
         version: 19.2.15
@@ -3328,6 +3328,7 @@ snapshots:
       '@types/node': 20.19.41
       pg-protocol: 1.14.0
       pg-types: 2.2.0
+    optional: true
 
   '@types/react-dom@19.2.3(@types/react@19.2.15)':
     dependencies:
@@ -4681,14 +4682,16 @@ snapshots:
   pg-connection-string@2.13.0:
     optional: true
 
-  pg-int8@1.0.1: {}
+  pg-int8@1.0.1:
+    optional: true
 
   pg-pool@3.14.0(pg@8.21.0):
     dependencies:
       pg: 8.21.0
     optional: true
 
-  pg-protocol@1.14.0: {}
+  pg-protocol@1.14.0:
+    optional: true
 
   pg-types@2.2.0:
     dependencies:
@@ -4697,6 +4700,7 @@ snapshots:
       postgres-bytea: 1.0.1
       postgres-date: 1.0.7
       postgres-interval: 1.2.0
+    optional: true
 
   pg@8.21.0:
     dependencies:
@@ -4734,15 +4738,19 @@ snapshots:
       picocolors: 1.1.1
       source-map-js: 1.2.1
 
-  postgres-array@2.0.0: {}
+  postgres-array@2.0.0:
+    optional: true
 
-  postgres-bytea@1.0.1: {}
+  postgres-bytea@1.0.1:
+    optional: true
 
-  postgres-date@1.0.7: {}
+  postgres-date@1.0.7:
+    optional: true
 
   postgres-interval@1.2.0:
     dependencies:
       xtend: 4.0.2
+    optional: true
 
   prelude-ls@1.2.1: {}
 
@@ -5178,7 +5186,8 @@ snapshots:
 
   word-wrap@1.2.5: {}
 
-  xtend@4.0.2: {}
+  xtend@4.0.2:
+    optional: true
 
   yallist@3.1.1: {}
 
