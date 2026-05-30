@@ -16,9 +16,10 @@ export const PUT = withErrorHandler(async (req, ctx) => {
 
   const bodyValidation = await updateTaskSchema.safeParseAsync(body);
   if (!bodyValidation.success) {
-    throw ApiError.BAD_REQUEST("Update Validation Failed", {
-      body: bodyValidation.error?.issues,
-    });
+    throw ApiError.BAD_REQUEST(
+      "Update Validation Failed",
+      bodyValidation.error?.issues,
+    );
   }
 
   const taskData = bodyValidation.data;
@@ -50,6 +51,7 @@ export const DELETE = withErrorHandler(async (req, ctx) => {
 
   const { id } = await ctx.params;
   const idValidation = await idSchema.safeParseAsync(id);
+
   if (idValidation.error) {
     throw ApiError.BAD_REQUEST(
       "Id validation failed",
@@ -67,7 +69,7 @@ export const DELETE = withErrorHandler(async (req, ctx) => {
   }
 
   return NextResponse.json(
-    { success: true, message: "Task deleted" },
+    { success: true, message: `Task ${id} deleted` },
     { status: 200 },
   );
 });

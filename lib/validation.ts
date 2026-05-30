@@ -33,7 +33,7 @@ export const idSchema = z.uuid().describe("Id is required");
 
 export const updateProjectSchema = z
   .object({
-    name: z.string().min(2).describe("Name cannot be empty"),
+    name: z.string().min(2).describe("Name cannot be empty").optional(),
     description: z.string().optional(),
   })
   .refine((data) => data.name !== undefined || data.description !== undefined, {
