@@ -7,13 +7,18 @@ export const createTaskSchema = z.object({
   projectId: z.uuid().describe("Invalid project ID"),
 });
 
-export const updateTaskSchema = z.object({
-  title: z.string().min(2).describe("Title is required"),
-  isCompleted: z
-    .boolean()
-    .default(false)
-    .describe("If the task item is completed ?"),
-});
+export const updateTaskSchema = z
+  .object({
+    title: z.string().min(2).describe("Title is required").optional(),
+    isCompleted: z
+      .boolean()
+      .default(false)
+      .describe("If the task item is completed ?"),
+  })
+  .refine(
+    (data) => data.title !== undefined || data.isCompleted !== undefined,
+    { message: "At least one field is required" },
+  );
 
 export const createProjectSchema = z.object({
   name: z.string().min(2).describe("Name is required"),
@@ -26,7 +31,11 @@ export const createProjectSchema = z.object({
 
 export const idSchema = z.uuid().describe("Id is required");
 
-export const updateProjectSchema = z.object({
-  name: z.string().min(2).describe("Name cannot be empty"),
-  description: z.string().optional(),
-});
+export const updateProjectSchema = z
+  .object({
+    name: z.string().min(2).describe("Name cannot be empty"),
+    description: z.string().optional(),
+  })
+  .refine((data) => data.name !== undefined || data.description !== undefined, {
+    message: "At least one field is required",
+  });
