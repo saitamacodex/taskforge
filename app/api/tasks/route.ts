@@ -36,8 +36,6 @@ export const POST = withErrorHandler(async (request) => {
 
   const bodyValidation = await createTaskSchema.safeParseAsync(body);
 
-  console.log(bodyValidation);
-
   if (bodyValidation.error) {
     throw ApiError.BAD_REQUEST(
       "Request body validation failed",
@@ -47,7 +45,7 @@ export const POST = withErrorHandler(async (request) => {
 
   const { title, projectId } = bodyValidation.data;
 
-  const createdTask = await db
+  const [createdTask] = await db
     .insert(tasks)
     .values({ title, projectId })
     .returning({
