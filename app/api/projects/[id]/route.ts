@@ -6,6 +6,30 @@ import { NextResponse } from "next/server";
 import { projects } from "@/lib/db/schema";
 import { eq } from "drizzle-orm/sql/expressions/conditions";
 
+export const GET = withErrorHandler(async (req, ctx) => {
+  if (!ctx) {
+    throw ApiError.NOT_FOUND("Id not found");
+  }
+
+  const { id } = await ctx.params;
+  const [response] = await db
+    .select()
+    .from(projects)
+    .where(eq(projects.id, id));
+
+  if (!response) {
+    throw ApiError.NOT_FOUND("No Project found");
+  }
+
+  return NextResponse.json(
+    {
+      success: true,
+      data: response,
+    },
+    { status: 200 },
+  );
+});
+
 export const PUT = withErrorHandler(async (req, ctx) => {
   if (!ctx) {
     throw ApiError.NOT_FOUND("ID not found");

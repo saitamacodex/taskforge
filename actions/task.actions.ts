@@ -6,11 +6,11 @@ import { createTaskSchema } from "@/lib/validation";
 import { eq } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
 
-export async function createTask(title: string, porjectId: string) {
+export async function createTask(title: string, projectId: string) {
   try {
     const validated = await createTaskSchema.safeParseAsync({
       title,
-      porjectId,
+      projectId,
     });
 
     if (!validated.success) {
@@ -25,10 +25,10 @@ export async function createTask(title: string, porjectId: string) {
       .values(validated.data)
       .returning();
 
-    revalidatePath(`/projects/${porjectId}`);
+    revalidatePath(`/projects/${projectId}`);
 
     return {
-      sucess: true,
+      success: true,
       data: createdTask,
     };
   } catch (error) {
