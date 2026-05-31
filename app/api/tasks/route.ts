@@ -4,7 +4,7 @@ import { tasks } from "@/lib/db/schema";
 import ApiError from "@/lib/apiError";
 import { withErrorHandler } from "@/lib/api-handler";
 import { createTaskSchema } from "@/lib/validation";
-import { eq } from "drizzle-orm";
+import { eq, asc, desc } from "drizzle-orm";
 
 // get all the tasks
 export const GET = withErrorHandler(async (req) => {
@@ -24,7 +24,9 @@ export const GET = withErrorHandler(async (req) => {
 
   // CONDITIONAL Query
   const tasksList = projectId
-    ? await query.where(eq(tasks.projectId, projectId))
+    ? await query
+        .where(eq(tasks.projectId, projectId))
+        .orderBy(asc(tasks.isCompleted), desc(tasks.createdAt))
     : await query;
 
   // if no task found
