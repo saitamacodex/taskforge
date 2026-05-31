@@ -16,7 +16,7 @@ function TaskItem({ task }: { task: Task }) {
         className="peer h-6 w-6 shrink-0 cursor-pointer accent-[#f4cf45] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#f4cf45]"
         readOnly
       />
-      <span className="min-w-0 flex-1 break-words text-base font-black text-[#f8f6ed] peer-checked:text-[#8f8f96] peer-checked:line-through">
+      <span className="min-w-0 flex-1 wrap-break-word text-base font-black text-[#f8f6ed] peer-checked:text-[#8f8f96] peer-checked:line-through">
         {task.title}
       </span>
       <button

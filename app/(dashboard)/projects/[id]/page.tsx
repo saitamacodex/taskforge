@@ -68,7 +68,7 @@ async function ProjectPage({ params }: { params: Promise<{ id: string }> }) {
 
       {/* Project header */}
       <div className="mb-8 rounded-md border-4 border-black bg-[#242424] p-6 shadow-[8px_8px_0_#050505] sm:p-8">
-        <h1 className="mb-3 break-words text-4xl font-black leading-tight text-[#f8f6ed] [text-shadow:4px_4px_0_#050505] sm:text-5xl">
+        <h1 className="mb-3 wrap-break-word text-4xl font-black leading-tight text-[#f8f6ed] [text-shadow:4px_4px_0_#050505] sm:text-5xl">
           {project.name}
         </h1>
         {project.description && (
