@@ -5,7 +5,9 @@ import DashboardHeader from "@/components/projects/dashboardHeader";
 async function getProjects() {
   const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
   const url = new URL("/api/projects", baseUrl);
-  const response = await fetch(url.toString());
+  const response = await fetch(url.toString(), {
+    cache: "no-store",
+  });
 
   if (!response.ok) {
     return [];
