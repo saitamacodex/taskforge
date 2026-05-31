@@ -14,7 +14,7 @@ export default function DashboardHeader() {
         </h1>
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="w-fit rounded-md border-4 border-black bg-[#f4cf45] px-5 py-2.5 text-sm font-black text-[#11110f] shadow-[6px_6px_0_#050505] transition-transform hover:translate-x-1 hover:translate-y-1 hover:shadow-[3px_3px_0_#050505]"
+          className="w-fit touch-manipulation select-none rounded-md border-4 border-black bg-[#f4cf45] px-5 py-2.5 text-sm font-black text-[#11110f] shadow-[6px_6px_0_#050505] transition-transform duration-150 hover:translate-x-1 hover:translate-y-1 hover:shadow-[3px_3px_0_#050505] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#f4cf45] active:translate-x-1.5 active:translate-y-1.5 active:bg-[#ffe16a] active:shadow-none"
         >
           + New Board
         </button>

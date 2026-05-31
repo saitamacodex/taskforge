@@ -34,7 +34,7 @@ function TaskItem({ task }: { task: Task }) {
       <button
         onClick={handleDelete}
         aria-label="Delete task"
-        className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-md border-2 border-black bg-[#ff5a5f] text-[#11110f] shadow-[4px_4px_0_#050505] transition-transform hover:translate-x-0.5 hover:translate-y-0.5 hover:bg-[#ff7478] hover:shadow-[2px_2px_0_#050505] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#f4cf45] active:translate-x-1 active:translate-y-1 active:shadow-none"
+        className="inline-flex h-11 w-11 shrink-0 touch-manipulation select-none items-center justify-center rounded-md border-2 border-black bg-[#ff5a5f] text-[#11110f] shadow-[4px_4px_0_#050505] transition-transform duration-150 hover:translate-x-0.5 hover:translate-y-0.5 hover:bg-[#ff7478] hover:shadow-[2px_2px_0_#050505] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#f4cf45] active:translate-x-1 active:translate-y-1 active:shadow-none"
       >
         {/*  SVG icon for delete button */}
         <svg

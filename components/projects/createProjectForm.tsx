@@ -41,13 +41,13 @@ export default function CreateProjectForm({
       <div className="flex gap-3">
         <button
           onClick={handleSubmit}
-          className="rounded-md border-2 border-black bg-[#f4cf45] px-5 py-2.5 text-sm font-black text-[#11110f] shadow-[4px_4px_0_#050505] transition-transform hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0_#050505]"
+          className="touch-manipulation select-none rounded-md border-2 border-black bg-[#f4cf45] px-5 py-2.5 text-sm font-black text-[#11110f] shadow-[4px_4px_0_#050505] transition-transform duration-150 hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0_#050505] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#f4cf45] active:translate-x-1 active:translate-y-1 active:bg-[#ffe16a] active:shadow-none"
         >
           Create
         </button>
         <button
           onClick={onClose}
-          className="rounded-md border-2 border-black bg-[#252525] px-5 py-2.5 text-sm font-black text-[#f8f6ed] shadow-[4px_4px_0_#050505] transition-transform hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0_#050505]"
+          className="touch-manipulation select-none rounded-md border-2 border-black bg-[#252525] px-5 py-2.5 text-sm font-black text-[#f8f6ed] shadow-[4px_4px_0_#050505] transition-transform duration-150 hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0_#050505] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#f4cf45] active:translate-x-1 active:translate-y-1 active:bg-[#333333] active:shadow-none"
         >
           Cancel
         </button>

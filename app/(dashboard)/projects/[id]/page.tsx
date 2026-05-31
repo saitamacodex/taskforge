@@ -49,7 +49,7 @@ async function ProjectPage({ params }: { params: Promise<{ id: string }> }) {
         </div>
         <Link
           href="/dashboard"
-          className="mt-6 inline-block rounded-md border-2 border-black bg-[#f4cf45] px-4 py-2 text-sm font-black text-[#11110f] shadow-[4px_4px_0_#050505] transition-transform hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0_#050505]"
+          className="mt-6 inline-block touch-manipulation select-none rounded-md border-2 border-black bg-[#f4cf45] px-4 py-2 text-sm font-black text-[#11110f] shadow-[4px_4px_0_#050505] transition-transform duration-150 hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0_#050505] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#f4cf45] active:translate-x-1 active:translate-y-1 active:bg-[#ffe16a] active:shadow-none"
         >
           ← Back to dashboard
         </Link>
@@ -66,7 +66,7 @@ async function ProjectPage({ params }: { params: Promise<{ id: string }> }) {
       {/* Back button */}
       <Link
         href="/dashboard"
-        className="mb-8 inline-block rounded-md border-2 border-black bg-[#f4cf45] px-4 py-2 text-sm font-black text-[#11110f] shadow-[4px_4px_0_#050505] transition-transform hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0_#050505]"
+        className="mb-8 inline-block touch-manipulation select-none rounded-md border-2 border-black bg-[#f4cf45] px-4 py-2 text-sm font-black text-[#11110f] shadow-[4px_4px_0_#050505] transition-transform duration-150 hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0_#050505] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#f4cf45] active:translate-x-1 active:translate-y-1 active:bg-[#ffe16a] active:shadow-none"
       >
         ← Back
       </Link>

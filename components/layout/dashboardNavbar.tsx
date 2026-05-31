@@ -9,7 +9,7 @@ export default function DashboardNavbar() {
       </Link>
       <Link
         href="/"
-        className="text-sm font-bold text-white border-2 border-white px-4 py-2 hover:bg-white hover:text-black transition-colors"
+        className="touch-manipulation select-none border-2 border-white px-4 py-2 text-sm font-bold text-white shadow-[4px_4px_0_#050505] transition-transform duration-150 hover:translate-x-0.5 hover:translate-y-0.5 hover:bg-white hover:text-black hover:shadow-[2px_2px_0_#050505] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#f4cf45] active:translate-x-1 active:translate-y-1 active:shadow-none"
       >
         ← Home
       </Link>
