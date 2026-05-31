@@ -1,17 +1,51 @@
+"use client";
+
 import { Project } from "@/lib/db/schema";
 import Link from "next/link";
+import { deleteProject } from "@/actions/project.actions";
 
 export default function ProjectCard({ project }: { project: Project }) {
+  // delete project with server actions
+  async function handleDelete() {
+    await deleteProject(project.id);
+  }
+
   return (
-    <div className="bg-gray-950 border border-gray-800 rounded-xl p-4">
-      <p className="text-white font-medium">{project.name}</p>
-      <p className="text-gray-500 text-sm mt-1">{project.description}</p>
-      <Link
-        href={`/projects/${project.id}`}
-        className="inline-flex items-center gap-2 border border-purple-500/50 px-3 py-1 text-base font-medium text-purple-400 transition-all duration-200 hover:border-purple-500 hover:text-purple-300"
-      >
-        Open <span>&rarr;</span>
-      </Link>
+    <div className="rounded-md border-4 border-black bg-[#242424] p-5 shadow-[8px_8px_0_#050505]">
+      <p className="text-xl font-black text-[#f8f6ed]">{project.name}</p>
+      <p className="mt-2 min-h-10 text-sm font-medium leading-relaxed text-[#b8b8bf]">
+        {project.description}
+      </p>
+      <div className="mt-5 flex items-center gap-3">
+        <Link
+          href={`/projects/${project.id}`}
+          className="inline-flex items-center gap-2 rounded-md border-2 border-black bg-[#f4cf45] px-4 py-2 text-base font-black text-[#11110f] shadow-[4px_4px_0_#050505] transition-transform hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0_#050505]"
+        >
+          Open <span>&rarr;</span>
+        </Link>
+        <button
+          onClick={handleDelete}
+          className="inline-flex h-11 w-11 items-center justify-center rounded-md border-2 border-black bg-[#b0363a] text-lg shadow-[4px_4px_0_#050505] transition-transform hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0_#050505] active:translate-x-1 active:translate-y-1 active:shadow-none"
+        >
+          // SVG icon for delete button
+          <svg
+            viewBox="0 0 24 24"
+            className="h-5 w-5"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M3 6h18" />
+            <path d="M8 6V4h8v2" />
+            <path d="M6 6l1 15h10l1-15" />
+            <path d="M10 11v6" />
+            <path d="M14 11v6" />
+          </svg>
+        </button>
+      </div>
     </div>
   );
 }

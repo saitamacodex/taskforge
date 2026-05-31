@@ -18,9 +18,9 @@ async function DashboardPage() {
   const allProjects: Project[] = await getProjects();
 
   return (
-    <div className="p-8">
+    <div className="min-h-screen p-5 sm:p-8 lg:p-10">
       <DashboardHeader />
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
         {allProjects.map((project) => (
           <ProjectCard key={project.id} project={project} />
         ))}

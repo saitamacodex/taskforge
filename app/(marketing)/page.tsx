@@ -26,35 +26,38 @@ function LandingPage() {
   return (
     <main className="min-h-screen">
       {/* Hero section */}
-      <section className="text-center px-8 py-16">
-        <h1 className="text-5xl md:text-6xl font-bold tracking-tight mb-6 text-balance">
-          Organize your work, <br /> one project at a time
+      <section className="px-5 py-20 text-center sm:px-8 md:py-28">
+        <h1 className="mx-auto mb-6 max-w-6xl text-balance text-5xl font-black leading-[0.95] tracking-normal text-[#f8f6ed] [text-shadow:5px_5px_0_#050505] sm:text-6xl md:text-7xl lg:text-8xl">
+          Organize your work, <br />{" "}
+          <span className="text-[#f4cf45]">one project at a time</span>
         </h1>
-        <p className="text-gray-500 dark:text-gray-400 text-lg md:text-xl max-w-xl mx-auto mb-10">
+        <p className="mx-auto mb-10 max-w-2xl text-lg font-semibold leading-8 text-[#b8b8bf] md:text-xl">
           Create projects, manage tasks, and stay on top of everything - all in
           one simple place.
         </p>
         <Link
           href="/dashboard"
-          className="inline-block bg-purple-600 text-white px-8 py-3.5 rounded-lg text-sm font-medium transition-colors hover:bg-purple-700 shadow-sm"
+          className="inline-block rounded-md border-4 border-black bg-[#f4cf45] px-8 py-3.5 text-sm font-black text-[#11110f] shadow-[7px_7px_0_#050505] transition-transform hover:translate-x-1 hover:translate-y-1 hover:shadow-[3px_3px_0_#050505]"
         >
           Start for free
         </Link>
       </section>
 
       {/* Features section */}
-      <section className="px-8 py-16 max-w-4xl mx-auto grid grid-cols-3 gap-6">
+      <section className="mx-auto grid max-w-5xl grid-cols-1 gap-6 px-5 py-16 sm:px-8 md:grid-cols-3">
         {features.map((feature) => {
           return (
             <div
               key={feature.title}
-              className="bg-gray-900 rounded-xl p-6 border border-gray-800"
+              className="rounded-md border-4 border-black bg-[#242424] p-6 shadow-[8px_8px_0_#050505]"
             >
-              <span className="text-2xl">{feature.icon}</span>
-              <h3 className="text-white font-medium mt-3 mb-2">
+              <span className="inline-flex h-12 w-12 items-center justify-center rounded-md border-2 border-black bg-[#f4cf45] text-2xl shadow-[3px_3px_0_#050505]">
+                {feature.icon}
+              </span>
+              <h3 className="mt-4 mb-2 text-lg font-black text-[#f8f6ed]">
                 {feature.title}
               </h3>
-              <p className="text-gray-400 text-sm leading-relaxed">
+              <p className="text-sm font-medium leading-relaxed text-[#b8b8bf]">
                 {feature.description}
               </p>
             </div>
@@ -62,7 +65,7 @@ function LandingPage() {
         })}
       </section>
       {/* footer */}
-      <footer className="text-center py-8 text-sm text-gray-500 border-t border-gray-800 mt-16">
+      <footer className="mt-16 border-t-4 border-black bg-[#242424] py-8 text-center text-sm font-bold text-[#b8b8bf] shadow-[0_-6px_0_#050505]">
         Built with Next.js - TaskForge {new Date().getFullYear()}
       </footer>
     </main>

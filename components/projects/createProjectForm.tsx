@@ -13,39 +13,41 @@ export default function CreateProjectForm({
 
   async function handleSubmit() {
     if (!name) return;
-    await createProject(name, description);
-    setName("");
-    setDescription("");
-    onClose();
+    const response = await createProject(name, description);
+    if (response.success) {
+      setName("");
+      setDescription("");
+      onClose();
+    }
   }
 
   return (
-    <div className="bg-gray-900 border border-gray-800 rounded-xl p-6 mt-16 mb-16 max-w-lg mx-auto">
-      <h2 className="text-white font-medium mb-4">New Project</h2>
+    <div className="mx-auto mt-10 mb-14 max-w-lg rounded-md border-4 border-black bg-[#242424] p-6 shadow-[8px_8px_0_#050505]">
+      <h2 className="mb-5 text-2xl font-black text-[#f8f6ed]">New Project</h2>
       <input
         type="text"
         placeholder="Project Name"
         value={name}
         onChange={(e) => setName(e.target.value)}
-        className="w-full bg-gray-800 text-white text-sm px-4 py-2 rounded-lg mb-3 outline-none"
+        className="mb-3 w-full rounded-md border-2 border-black bg-[#f8f6ed] px-4 py-3 text-sm font-bold text-[#11110f] outline-none shadow-[3px_3px_0_#050505] placeholder:text-[#5c5c62] focus:bg-white"
       />
       <input
         type="text"
         placeholder="Description (optional)"
         value={description}
         onChange={(e) => setDescription(e.target.value)}
-        className="w-full bg-gray-800 text-white text-sm px-4 py-2 rounded-lg mb-4 outline-none"
+        className="mb-5 w-full rounded-md border-2 border-black bg-[#f8f6ed] px-4 py-3 text-sm font-bold text-[#11110f] outline-none shadow-[3px_3px_0_#050505] placeholder:text-[#5c5c62] focus:bg-white"
       />
       <div className="flex gap-3">
         <button
           onClick={handleSubmit}
-          className="bg-purple-600 text-white text-sm px-4 py-2 rounded-lg hover:bg-purple-700"
+          className="rounded-md border-2 border-black bg-[#f4cf45] px-5 py-2.5 text-sm font-black text-[#11110f] shadow-[4px_4px_0_#050505] transition-transform hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0_#050505]"
         >
           Create
         </button>
         <button
           onClick={onClose}
-          className="text-gray-400 text-sm px-4 py-2 rounded-lg hover:text-white"
+          className="rounded-md border-2 border-black bg-[#252525] px-5 py-2.5 text-sm font-black text-[#f8f6ed] shadow-[4px_4px_0_#050505] transition-transform hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0_#050505]"
         >
           Cancel
         </button>

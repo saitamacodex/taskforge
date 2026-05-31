@@ -1,14 +1,19 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #11110f;
+  --foreground: #f8f6ed;
+  --brutal-yellow: #f4cf45;
+  --brutal-ink: #050505;
+  --brutal-panel: #242424;
+  --brutal-muted: #a8a8ad;
+  --brutal-grid: rgba(244, 207, 69, 0.12);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #11110f;
+    --foreground: #f8f6ed;
   }
 }
 
@@ -17,4 +22,23 @@
   --color-foreground: var(--foreground);
   /* Map Tailwind's font-sans utility to your Inter Google font */
   --font-sans: var(--font-inter);
+}
+
+html {
+  background: var(--background);
+}
+
+body {
+  background:
+    linear-gradient(var(--brutal-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--brutal-grid) 1px, transparent 1px),
+    radial-gradient(circle at 0 0, rgba(244, 207, 69, 0.1), transparent 26rem),
+    var(--background);
+  background-size: 34px 34px, 34px 34px, auto, auto;
+  color: var(--foreground);
+}
+
+::selection {
+  background: var(--brutal-yellow);
+  color: var(--brutal-ink);
 }
