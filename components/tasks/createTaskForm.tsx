@@ -9,8 +9,6 @@ function CreateTaskForm({ projectId }: { projectId: string }) {
     if (!title) return;
     const response = await createTask(title, projectId);
 
-    console.log("Create Task Response:", response);
-
     if (response.success) {
       setTitle("");
     }
