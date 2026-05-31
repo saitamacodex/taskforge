@@ -3,7 +3,7 @@ import { Project } from "@/lib/db/schema";
 import DashboardHeader from "@/components/projects/dashboardHeader";
 
 async function getProjects() {
-  const baseUrl = process.env.NEXT_PUBLIC_APP_URL;
+  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
   const url = new URL("/api/projects", baseUrl);
   const response = await fetch(url.toString());
 

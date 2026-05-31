@@ -7,7 +7,7 @@ import CreateTaskForm from "@/components/tasks/createTaskForm";
 export const revalidate = 60;
 
 async function getProjectById(id: string) {
-  const baseUrl = process.env.NEXT_PUBLIC_APP_URL;
+  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
   const url = new URL(`/api/projects/${id}`, baseUrl);
   const response = await fetch(url.toString());
 
@@ -20,7 +20,7 @@ async function getProjectById(id: string) {
 }
 
 async function getTasksByProjectId(prjId: string) {
-  const baseUrl = process.env.NEXT_PUBLIC_APP_URL;
+  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
   const url = new URL(`/api/tasks?projectId=${prjId}`, baseUrl);
   const response = await fetch(url.toString());
 
