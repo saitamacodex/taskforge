@@ -23,10 +23,10 @@ export default function CreateProjectForm({
 
   return (
     <div className="mx-auto mt-10 mb-14 max-w-lg rounded-md border-4 border-black bg-[#242424] p-6 shadow-[8px_8px_0_#050505]">
-      <h2 className="mb-5 text-2xl font-black text-[#f8f6ed]">New Project</h2>
+      <h2 className="mb-5 text-2xl font-black text-[#f8f6ed]">New Board</h2>
       <input
         type="text"
-        placeholder="Project Name"
+        placeholder="Board Name"
         value={name}
         onChange={(e) => setName(e.target.value)}
         className="mb-3 w-full rounded-md border-2 border-black bg-[#f8f6ed] px-4 py-3 text-sm font-bold text-[#11110f] outline-none shadow-[3px_3px_0_#050505] placeholder:text-[#5c5c62] focus:bg-white"

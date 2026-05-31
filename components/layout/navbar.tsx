@@ -12,12 +12,14 @@ function Navbar() {
       </Link>
 
       <div className="flex items-center gap-3">
-        <Link
-          href="/dashboard"
-          className="rounded-md border-2 border-black bg-[#252525] px-4 py-2 text-sm font-black text-[#f8f6ed] shadow-[4px_4px_0_#050505] transition-transform hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0_#050505]"
+        <button
+          type="button"
+          disabled
+          title="coming soon...."
+          className="cursor-not-allowed rounded-md border-2 border-black bg-[#252525] px-4 py-2 text-sm font-black text-[#9d9da3] opacity-80 shadow-[4px_4px_0_#050505]"
         >
           Sign In
-        </Link>
+        </button>
         <Link
           href="/dashboard"
           className="rounded-md border-2 border-black bg-[#f4cf45] px-4 py-2 text-sm font-black text-[#11110f] shadow-[4px_4px_0_#050505] transition-transform hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0_#050505]"

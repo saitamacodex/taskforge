@@ -4,22 +4,21 @@ import Link from "next/link";
 function LandingPage() {
   const features = [
     {
-      icon: "📁",
-      title: "Projects",
+      icon: "⚒️",
+      title: "Forge Your Plans",
       description:
-        "Group your tasks into focused projects. Keep work and personal tasks separate.",
+        "Organize your work into projects and keep related tasks together.",
     },
     {
-      icon: "✅",
-      title: "Tasks",
+      icon: "✓",
+      title: "Manage Tasks",
       description:
-        "Add, complete, and delete tasks instantly. Simple checkboxes, no clutter.",
+        "Capture every task, big or small, and track progress effortlessly.",
     },
     {
-      icon: "🔗",
-      title: "Share boards",
-      description:
-        "Share any project board via a public link. Let others see your progress.",
+      icon: "🎯",
+      title: "Hit Your Goals",
+      description: "Stay focused, organized, and productive every single day.",
     },
   ];
 
