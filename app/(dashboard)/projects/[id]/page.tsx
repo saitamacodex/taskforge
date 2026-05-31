@@ -36,11 +36,15 @@ async function ProjectPage({ params }: { params: Promise<{ id: string }> }) {
 
   if (!project) {
     return (
-      <div className="p-8">
-        <p className="text-white font-bold">Project not found</p>
+      <div className="mx-auto min-h-screen max-w-3xl p-5 sm:p-8">
+        <div className="rounded-md border-4 border-black bg-[#242424] p-6 shadow-[8px_8px_0_#050505]">
+          <p className="text-2xl font-black text-[#f8f6ed]">
+            Project not found
+          </p>
+        </div>
         <Link
           href="/dashboard"
-          className="text-yellow-400 font-bold mt-4 block"
+          className="mt-6 inline-block rounded-md border-2 border-black bg-[#f4cf45] px-4 py-2 text-sm font-black text-[#11110f] shadow-[4px_4px_0_#050505] transition-transform hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0_#050505]"
         >
           ← Back to dashboard
         </Link>
@@ -53,36 +57,40 @@ async function ProjectPage({ params }: { params: Promise<{ id: string }> }) {
   const pendingTasks = tasks.length - completedTasks;
 
   return (
-    <div className="p-8 max-w-3xl mx-auto">
+    <div className="mx-auto min-h-screen max-w-5xl p-5 sm:p-8 lg:p-10">
       {/* Back button */}
       <Link
         href="/dashboard"
-        className="inline-block text-yellow-400 font-bold text-sm border-2 border-yellow-400 px-3 py-1 mb-6 hover:bg-yellow-400 hover:text-black transition-colors"
+        className="mb-8 inline-block rounded-md border-2 border-black bg-[#f4cf45] px-4 py-2 text-sm font-black text-[#11110f] shadow-[4px_4px_0_#050505] transition-transform hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0_#050505]"
       >
         ← Back
       </Link>
 
       {/* Project header */}
-      <div className="border-2 border-white p-6 mb-6 shadow-[4px_4px_0px_#ffffff]">
-        <h1 className="text-white text-3xl font-black mb-2">{project.name}</h1>
+      <div className="mb-8 rounded-md border-4 border-black bg-[#242424] p-6 shadow-[8px_8px_0_#050505] sm:p-8">
+        <h1 className="mb-3 break-words text-4xl font-black leading-tight text-[#f8f6ed] [text-shadow:4px_4px_0_#050505] sm:text-5xl">
+          {project.name}
+        </h1>
         {project.description && (
-          <p className="text-gray-400 text-sm">{project.description}</p>
+          <p className="max-w-3xl text-sm font-semibold leading-7 text-[#b8b8bf] sm:text-base">
+            {project.description}
+          </p>
         )}
       </div>
 
       {/* Tasks stats */}
-      <div className="grid grid-cols-3 gap-4 mb-6">
-        <div className="border-2 border-white p-4 text-center shadow-[4px_4px_0px_#ffffff]">
-          <p className="text-yellow-400 text-2xl font-black">{tasks.length}</p>
-          <p className="text-gray-500 text-xs font-bold mt-1">TOTAL</p>
+      <div className="mb-8 grid grid-cols-1 gap-5 sm:grid-cols-3">
+        <div className="rounded-md border-4 border-black bg-[#f4cf45] p-5 text-center shadow-[6px_6px_0_#050505]">
+          <p className="text-4xl font-black text-[#11110f]">{tasks.length}</p>
+          <p className="mt-1 text-xs font-black text-[#11110f]">TOTAL</p>
         </div>
-        <div className="border-2 border-white p-4 text-center shadow-[4px_4px_0px_#ffffff]">
-          <p className="text-green-400 text-2xl font-black">{completedTasks}</p>
-          <p className="text-gray-500 text-xs font-bold mt-1">DONE</p>
+        <div className="rounded-md border-4 border-black bg-[#6ee787] p-5 text-center shadow-[6px_6px_0_#050505]">
+          <p className="text-4xl font-black text-[#11110f]">{completedTasks}</p>
+          <p className="mt-1 text-xs font-black text-[#11110f]">DONE</p>
         </div>
-        <div className="border-2 border-white p-4 text-center shadow-[4px_4px_0px_#ffffff]">
-          <p className="text-red-400 text-2xl font-black">{pendingTasks}</p>
-          <p className="text-gray-500 text-xs font-bold mt-1">PENDING</p>
+        <div className="rounded-md border-4 border-black bg-[#ff5a5f] p-5 text-center shadow-[6px_6px_0_#050505]">
+          <p className="text-4xl font-black text-[#11110f]">{pendingTasks}</p>
+          <p className="mt-1 text-xs font-black text-[#11110f]">PENDING</p>
         </div>
       </div>
       {/* Add task form */}
@@ -90,10 +98,13 @@ async function ProjectPage({ params }: { params: Promise<{ id: string }> }) {
       <CreateTaskForm projectId={id} />
 
       {/* SHow list of tasks */}
-      <div className="flex flex-col mt-6">
-        <p className="text-gray-500 text-xs font-bold"> TASKS</p>
+      <div className="mt-8 flex flex-col">
+        <p className="mb-4 w-fit rounded-md border-2 border-black bg-[#242424] px-4 py-2 text-md font-black text-[#f8f6ed] shadow-[4px_4px_0_#050505]">
+          {" "}
+          TASKS
+        </p>
         {tasks.length === 0 ? (
-          <p className="text-gray-600 text-sm font-bold border-2 border-dashed border-gray-700 p-6 text-center">
+          <p className="rounded-md border-4 border-dashed border-black bg-[#242424] p-8 text-center text-sm font-black text-[#b8b8bf] shadow-[6px_6px_0_#050505]">
             No tasks yet - add one above!
           </p>
         ) : (
