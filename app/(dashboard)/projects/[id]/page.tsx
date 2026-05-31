@@ -3,6 +3,9 @@ import Link from "next/link";
 import TaskItem from "@/components/tasks/taskItem";
 import CreateTaskForm from "@/components/tasks/createTaskForm";
 
+// ISR: revalidate this page every 60 seconds to keep data fresh
+export const revalidate = 60;
+
 async function getProjectById(id: string) {
   const baseUrl = process.env.NEXT_PUBLIC_APP_URL;
   const url = new URL(`/api/projects/${id}`, baseUrl);
@@ -32,15 +35,9 @@ async function getTasksByProjectId(prjId: string) {
 async function ProjectPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
 
-  console.log("Fetching data for project ID:", id);
-
   const project: Project | null = await getProjectById(id);
 
-  console.log("Fetched project data:", project);
-
   const tasks: Task[] = await getTasksByProjectId(id);
-
-  console.log(`Fetched ${tasks.length} tasks for project ID ${id}`);
 
   if (!project) {
     return (
@@ -76,7 +73,7 @@ async function ProjectPage({ params }: { params: Promise<{ id: string }> }) {
 
       {/* Project header */}
       <div className="mb-8 rounded-md border-4 border-black bg-[#242424] p-6 shadow-[8px_8px_0_#050505] sm:p-8">
-        <h1 className="mb-3 wrap-break-word text-4xl font-black leading-tight text-[#f8f6ed] [text-shadow:4px_4px_0_#050505] sm:text-5xl">
+        <h1 className="mb-3 break-word text-4xl font-black leading-tight text-[#f8f6ed] [text-shadow:4px_4px_0_#050505] sm:text-5xl">
           {project.name}
         </h1>
         {project.description && (

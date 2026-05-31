@@ -2,10 +2,22 @@
 
 import { deleteTask } from "@/actions/task.actions";
 import { Task } from "@/lib/db/schema";
+import { useRouter } from "next/navigation";
 
 function TaskItem({ task }: { task: Task }) {
+  const router = useRouter();
+
   async function handleDelete() {
     await deleteTask(task.id, task.projectId);
+  }
+
+  async function handleToggle() {
+    await fetch(`/api/tasks/${task.id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ isCompleted: !task.isCompleted }),
+    });
+    router.refresh();
   }
 
   return (
@@ -14,7 +26,7 @@ function TaskItem({ task }: { task: Task }) {
         type="checkbox"
         checked={task.isCompleted}
         className="peer h-6 w-6 shrink-0 cursor-pointer accent-[#f4cf45] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#f4cf45]"
-        readOnly
+        onChange={handleToggle}
       />
       <span className="min-w-0 flex-1 wrap-break-word text-base font-black text-[#f8f6ed] peer-checked:text-[#8f8f96] peer-checked:line-through">
         {task.title}

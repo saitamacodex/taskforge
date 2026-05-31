@@ -8,6 +8,7 @@ import { eq } from "drizzle-orm";
 
 // get all the tasks
 export const GET = withErrorHandler(async (req) => {
+  // destructure queryParams from URL
   const { searchParams } = new URL(req.url);
   const projectId = searchParams.get("projectId");
 
@@ -21,11 +22,12 @@ export const GET = withErrorHandler(async (req) => {
     })
     .from(tasks);
 
+  // CONDITIONAL Query
   const tasksList = projectId
     ? await query.where(eq(tasks.projectId, projectId))
     : await query;
 
-  // if not task found
+  // if no task found
   if (tasksList.length === 0) {
     throw ApiError.NOT_FOUND("No tasks found");
   }

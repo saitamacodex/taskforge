@@ -8,7 +8,7 @@ export default function DashboardHeader() {
 
   return (
     <div className="mb-8">
-      <div className="mb-6 flex flex-col gap-4 border-b-4 border-black pb-6 sm:flex-row sm:items-center sm:justify-between">
+      <div className="mb-6 flex flex-col gap-4 border-b-4 border-none pb-6 sm:flex-row sm:items-center sm:justify-between">
         <h1 className="text-4xl font-black text-[#f8f6ed] [text-shadow:4px_4px_0_#050505] sm:text-5xl">
           My Projects
         </h1>
