@@ -26,3 +26,10 @@ export const tasks = pgTable("tasks", {
     .notNull()
     .references(() => projects.id, { onDelete: "cascade" }),
 });
+
+// infer types
+export type Project = typeof projects.$inferSelect;
+export type NewProject = typeof projects.$inferInsert;
+
+export type Task = typeof tasks.$inferSelect;
+export type NewTask = typeof tasks.$inferInsert;
