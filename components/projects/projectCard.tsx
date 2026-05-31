@@ -27,7 +27,7 @@ export default function ProjectCard({ project }: { project: Project }) {
           onClick={handleDelete}
           className="inline-flex h-11 w-11 items-center justify-center rounded-md border-2 border-black bg-[#b0363a] text-lg shadow-[4px_4px_0_#050505] transition-transform hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0_#050505] active:translate-x-1 active:translate-y-1 active:shadow-none"
         >
-          // SVG icon for delete button
+          {/*  SVG icon for delete button */}
           <svg
             viewBox="0 0 24 24"
             className="h-5 w-5"
