@@ -4,10 +4,14 @@ import { tasks } from "@/lib/db/schema";
 import ApiError from "@/lib/apiError";
 import { withErrorHandler } from "@/lib/api-handler";
 import { createTaskSchema } from "@/lib/validation";
+import { eq } from "drizzle-orm";
 
 // get all the tasks
-export const GET = withErrorHandler(async () => {
-  const allTasks = await db
+export const GET = withErrorHandler(async (req) => {
+  const { searchParams } = new URL(req.url);
+  const projectId = searchParams.get("projectId");
+
+  const query = db
     .select({
       id: tasks.id,
       title: tasks.title,
@@ -17,15 +21,19 @@ export const GET = withErrorHandler(async () => {
     })
     .from(tasks);
 
+  const tasksList = projectId
+    ? await query.where(eq(tasks.projectId, projectId))
+    : await query;
+
   // if not task found
-  if (allTasks.length === 0) {
+  if (tasksList.length === 0) {
     throw ApiError.NOT_FOUND("No tasks found");
   }
 
   return NextResponse.json(
     {
       success: true,
-      data: allTasks,
+      data: tasksList,
     },
     { status: 200 },
   );

@@ -31,8 +31,16 @@ async function getTasksByProjectId(prjId: string) {
 
 async function ProjectPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
+
+  console.log("Fetching data for project ID:", id);
+
   const project: Project | null = await getProjectById(id);
+
+  console.log("Fetched project data:", project);
+
   const tasks: Task[] = await getTasksByProjectId(id);
+
+  console.log(`Fetched ${tasks.length} tasks for project ID ${id}`);
 
   if (!project) {
     return (
