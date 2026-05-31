@@ -1,4 +1,5 @@
 import ProjectCard from "@/components/projects/projectCard";
+import CreatePorjectForm from "@/components/projects/createProjectForm";
 import { Project } from "@/lib/db/schema";
 
 async function getProjects() {
@@ -19,12 +20,13 @@ async function DashboardPage() {
 
   return (
     <div className="p-8">
+      {/* header */}
       <div className="flex items-center justify-between mb-6">
         <h1 className="text-white text-2xl font-medium">My Projects</h1>
-        <button className="bg-purple-700 text-white text-sm px-4 py-2 rounded-lg hover:bg-purple-900">
-          + New Project
-        </button>
+        <CreatePorjectForm />
       </div>
+
+      {/* projects grid */}
       <div className="grid grid-cols-3 gap-4">
         {allProjects.map((porject) => (
           <ProjectCard key={porject.id} project={porject} />
