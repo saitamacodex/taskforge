@@ -84,18 +84,30 @@ async function ProjectPage({ params }: { params: Promise<{ id: string }> }) {
       </div>
 
       {/* Tasks stats */}
-      <div className="mb-8 grid grid-cols-1 gap-5 sm:grid-cols-3">
-        <div className="rounded-md border-4 border-black bg-[#f4cf45] p-5 text-center shadow-[6px_6px_0_#050505]">
-          <p className="text-4xl font-black text-[#11110f]">{tasks.length}</p>
-          <p className="mt-1 text-xs font-black text-[#11110f]">TOTAL</p>
+      <div className="mb-6 grid grid-cols-3 gap-2 sm:mb-8 sm:gap-5">
+        <div className="rounded-md border-[3px] border-black bg-[#f4cf45] px-2 py-3 text-center shadow-[4px_4px_0_#050505] sm:border-4 sm:p-5 sm:shadow-[6px_6px_0_#050505]">
+          <p className="text-2xl font-black leading-none text-[#11110f] sm:text-4xl">
+            {tasks.length}
+          </p>
+          <p className="mt-1 text-[10px] font-black text-[#11110f] sm:text-xs">
+            TOTAL
+          </p>
         </div>
-        <div className="rounded-md border-4 border-black bg-[#6ee787] p-5 text-center shadow-[6px_6px_0_#050505]">
-          <p className="text-4xl font-black text-[#11110f]">{completedTasks}</p>
-          <p className="mt-1 text-xs font-black text-[#11110f]">DONE</p>
+        <div className="rounded-md border-[3px] border-black bg-[#6ee787] px-2 py-3 text-center shadow-[4px_4px_0_#050505] sm:border-4 sm:p-5 sm:shadow-[6px_6px_0_#050505]">
+          <p className="text-2xl font-black leading-none text-[#11110f] sm:text-4xl">
+            {completedTasks}
+          </p>
+          <p className="mt-1 text-[10px] font-black text-[#11110f] sm:text-xs">
+            DONE
+          </p>
         </div>
-        <div className="rounded-md border-4 border-black bg-[#ff5a5f] p-5 text-center shadow-[6px_6px_0_#050505]">
-          <p className="text-4xl font-black text-[#11110f]">{pendingTasks}</p>
-          <p className="mt-1 text-xs font-black text-[#11110f]">PENDING</p>
+        <div className="rounded-md border-[3px] border-black bg-[#ff5a5f] px-2 py-3 text-center shadow-[4px_4px_0_#050505] sm:border-4 sm:p-5 sm:shadow-[6px_6px_0_#050505]">
+          <p className="text-2xl font-black leading-none text-[#11110f] sm:text-4xl">
+            {pendingTasks}
+          </p>
+          <p className="mt-1 text-[10px] font-black text-[#11110f] sm:text-xs">
+            PENDING
+          </p>
         </div>
       </div>
       {/* Add task form */}
