@@ -1,4 +1,11 @@
-import { boolean, pgTable, text, timestamp, uuid } from "drizzle-orm/pg-core";
+import {
+  boolean,
+  pgTable,
+  text,
+  timestamp,
+  uuid,
+  varchar,
+} from "drizzle-orm/pg-core";
 
 // todo project schema
 export const projects = pgTable("projects", {
@@ -25,6 +32,22 @@ export const tasks = pgTable("tasks", {
   projectId: uuid("project_id")
     .notNull()
     .references(() => projects.id, { onDelete: "cascade" }),
+});
+
+// user schema
+export const user = pgTable("user", {
+  id: uuid("id").primaryKey().defaultRandom(),
+
+  firstName: varchar("first_name", { length: 40 }).notNull(),
+  lastName: varchar("last_name", { length: 45 }),
+
+  email: varchar("email", { length: 322 }).notNull().unique(),
+  password: varchar("password", { length: 65 }).notNull(),
+
+  salt: text("salt"),
+
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").$onUpdate(() => new Date()),
 });
 
 // infer types
