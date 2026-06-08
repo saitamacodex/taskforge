@@ -39,3 +39,15 @@ export const updateProjectSchema = z
   .refine((data) => data.name !== undefined || data.description !== undefined, {
     message: "At least one field is required",
   });
+
+export const signUpSchema = z.object({
+  firstName: z.string().min(2).describe("Firstname is required"),
+  lastName: z.string().nullable().optional(),
+  email: z.email(),
+  password: z.string().min(5).describe("Password must be mininum 6 character"),
+});
+
+export const signInSchema = z.object({
+  email: z.email().describe("Email id is required"),
+  password: z.string().min(5).describe("Password must be mininum 6 character"),
+});
