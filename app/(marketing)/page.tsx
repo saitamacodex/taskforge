@@ -35,7 +35,7 @@ function LandingPage() {
           one simple place.
         </p>
         <Link
-          href="/dashboard"
+          href="/signin"
           className="inline-block touch-manipulation select-none rounded-md border-4 border-black bg-[#f4cf45] px-8 py-3.5 text-sm font-black text-[#11110f] shadow-[7px_7px_0_#050505] transition-transform duration-150 hover:translate-x-1 hover:translate-y-1 hover:shadow-[3px_3px_0_#050505] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#f4cf45] active:translate-x-1.5 active:translate-y-1.5 active:bg-[#ffe16a] active:shadow-none"
         >
           Start for free
