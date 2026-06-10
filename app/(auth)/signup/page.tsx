@@ -60,15 +60,9 @@ function SignUp() {
         <div className="mb-8 flex items-center justify-between">
           <Link
             href="/"
-            className="text-2xl font-black text-[#f4cf45] [text-shadow:3px_3px_0_#050505]"
+            className="text-2xl font-black text-[#f4cf45] [text-shadow:3px_3px_0_#050505] border border-gray-500 bg-[#11110f] px-3 py-1 shadow-[6px_6px_0_#050505] touch-manipulation select-none transition-transform duration-150 hover:translate-x-1 hover:translate-y-1 hover:shadow-[3px_3px_0_#050505] focus-visible:outline-2 focus-visible:outline-offset-2  active:translate-x-1.5 active:translate-y-1.5  active:shadow-none"
           >
             TaskForge
-          </Link>
-          <Link
-            href="/signin"
-            className="touch-manipulation select-none rounded-md border-2 border-black bg-[#252525] px-4 py-2 text-sm font-black text-[#f8f6ed] shadow-[4px_4px_0_#050505] transition-transform duration-150 hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0_#050505] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#f4cf45] active:translate-x-1 active:translate-y-1 active:bg-[#333333] active:shadow-none"
-          >
-            Sign in
           </Link>
         </div>
 
