@@ -13,10 +13,17 @@ export async function createUser(signUpPayload: SignUpRequest) {
     const validateRegisterPayload =
       await signUpSchema.safeParseAsync(signUpPayload);
 
+    // collect all validation error messages if any
+    const validationIssues = validateRegisterPayload.error?.issues;
+    let messages: string[] = [];
+    validationIssues?.forEach((issue) => {
+      messages.push(`${issue.message} at path ${issue.path}`);
+    });
+
     if (!validateRegisterPayload.success) {
       return {
         success: false,
-        message: validateRegisterPayload.error?.issues[0].message,
+        message: messages.join(" & "),
       };
     }
 
