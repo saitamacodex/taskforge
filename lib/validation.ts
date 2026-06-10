@@ -51,3 +51,6 @@ export const signInSchema = z.object({
   email: z.email().describe("Email id is required"),
   password: z.string().min(5).describe("Password must be mininum 6 character"),
 });
+
+export type SignUpRequest = z.infer<typeof signUpSchema>;
+export type SignInRequest = z.infer<typeof signInSchema>;

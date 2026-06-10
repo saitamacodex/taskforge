@@ -5,21 +5,13 @@ import { user } from "@/lib/db/schema";
 import { signUpSchema, signInSchema } from "@/lib/validation";
 import { eq } from "drizzle-orm";
 import { randomBytes, createHmac } from "node:crypto";
+import { SignUpRequest } from "@/lib/validation";
 
-export async function createUser(
-  firstName: string,
-  lastName: string,
-  email: string,
-  password: string,
-) {
+export async function createUser(signUpPayload: SignUpRequest) {
   try {
     // request body validation
-    const validateRegisterPayload = await signUpSchema.safeParseAsync({
-      firstName,
-      lastName,
-      email,
-      password,
-    });
+    const validateRegisterPayload =
+      await signUpSchema.safeParseAsync(signUpPayload);
 
     if (!validateRegisterPayload.success) {
       return {
@@ -28,6 +20,8 @@ export async function createUser(
       };
     }
 
+    const { firstName, lastName, email, password } =
+      validateRegisterPayload.data;
     // validate if user already exist or not
     const existingUser = await db
       .select()
