@@ -5,7 +5,7 @@ import { user } from "@/lib/db/schema";
 import { signUpSchema, signInSchema } from "@/lib/validation";
 import { eq } from "drizzle-orm";
 import { randomBytes, createHmac } from "node:crypto";
-import { SignUpRequest } from "@/lib/validation";
+import { SignUpRequest, SignInRequest } from "@/lib/validation";
 
 export async function createUser(signUpPayload: SignUpRequest) {
   try {
@@ -71,20 +71,26 @@ export async function createUser(signUpPayload: SignUpRequest) {
   }
 }
 
-export async function loginUser(email: string, password: string) {
+export async function loginUser(signInPayload: SignInRequest) {
   try {
-    const validateLoginPayload = await signInSchema.safeParseAsync({
-      email,
-      password,
+    const validateLoginPayload =
+      await signInSchema.safeParseAsync(signInPayload);
+
+    // collect all validation error messages if any
+    let errorMessages: string[] = [];
+    const validationMessage = validateLoginPayload.error?.issues;
+    validationMessage?.forEach((issue) => {
+      errorMessages.push(`${issue.message} at path ${issue.path}`);
     });
 
     if (!validateLoginPayload.success) {
       return {
         success: false,
-        message: validateLoginPayload.error?.issues[0].message,
+        message: errorMessages.join(" & "),
       };
     }
 
+    const { email, password } = validateLoginPayload.data;
     const [selectUser] = await db
       .select()
       .from(user)
