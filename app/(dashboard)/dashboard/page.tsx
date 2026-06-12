@@ -1,6 +1,9 @@
 import ProjectCard from "@/components/projects/projectCard";
 import { Project } from "@/lib/db/schema";
 import DashboardHeader from "@/components/projects/dashboardHeader";
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
+import { verifyToken } from "@/lib/token";
 
 async function getProjects() {
   const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
@@ -17,6 +20,16 @@ async function getProjects() {
   return payload?.data ?? [];
 }
 async function DashboardPage() {
+  const token = (await cookies()).get("token")?.value;
+  if (!token) {
+    redirect("/signin");
+  }
+
+  const payload = verifyToken(token);
+  if (!payload) {
+    redirect("/signin");
+  }
+
   const allProjects: Project[] = await getProjects();
 
   return (

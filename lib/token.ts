@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import "dotenv/config";
+import ApiError from "./apiError";
 
 export interface UserTokenPayload {
   id: string;
@@ -8,7 +8,7 @@ export interface UserTokenPayload {
 
 export const generateToken = (payload: UserTokenPayload) => {
   if (!process.env.JWT_SECRET) {
-    throw new Error("JWT_SECRET is missing");
+    throw ApiError.NOT_FOUND("JWT_SECRET is missing");
   }
   return jwt.sign(payload, process.env.JWT_SECRET!, {
     expiresIn: "15m",
