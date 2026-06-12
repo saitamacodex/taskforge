@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import CreateProjectForm from "./createProjectForm";
+import { logoutUser } from "@/actions/user.actions";
 
 export default function DashboardHeader() {
   const [isOpen, setIsOpen] = useState(false);
@@ -18,6 +19,11 @@ export default function DashboardHeader() {
         >
           + New Board
         </button>
+        <div>
+          <form action={logoutUser}>
+            <button type="submit">Logout</button>
+          </form>
+        </div>
       </div>
 
       {isOpen && <CreateProjectForm onClose={() => setIsOpen(false)} />}

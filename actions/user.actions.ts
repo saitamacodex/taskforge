@@ -8,6 +8,7 @@ import { randomBytes, createHmac } from "node:crypto";
 import { SignUpRequest, SignInRequest } from "@/lib/validation";
 import { generateToken } from "@/lib/token";
 import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 
 export async function createUser(signUpPayload: SignUpRequest) {
   try {
@@ -130,7 +131,7 @@ export async function loginUser(signInPayload: SignInRequest) {
     cookieStore.set("token", token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
-      maxAge: 15 * 60 * 1000,
+      maxAge: 15 * 60,
       path: "/",
       sameSite: "strict",
     });
@@ -146,4 +147,11 @@ export async function loginUser(signInPayload: SignInRequest) {
       errors: error,
     };
   }
+}
+
+export async function logoutUser() {
+  const cookiesStore = await cookies();
+  cookiesStore.delete("token");
+
+  redirect("/signin");
 }
