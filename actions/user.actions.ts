@@ -68,7 +68,7 @@ export async function createUser(signUpPayload: SignUpRequest) {
       },
     };
   } catch (error) {
-    console.log("Error while signUp: ");
+    console.error("Error while signUp: ", error);
     return { success: false, errors: error };
   }
 }
@@ -140,7 +140,7 @@ export async function loginUser(signInPayload: SignInRequest) {
       message: "Sign in success",
     };
   } catch (error) {
-    console.log("Error while login: ");
+    console.error("Error while login: ", error);
     return {
       success: false,
       errors: error,
