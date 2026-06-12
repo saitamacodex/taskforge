@@ -6,6 +6,8 @@ import { signUpSchema, signInSchema } from "@/lib/validation";
 import { eq } from "drizzle-orm";
 import { randomBytes, createHmac } from "node:crypto";
 import { SignUpRequest, SignInRequest } from "@/lib/validation";
+import { generateToken } from "@/lib/token";
+import { cookies } from "next/headers";
 
 export async function createUser(signUpPayload: SignUpRequest) {
   try {
@@ -119,7 +121,19 @@ export async function loginUser(signInPayload: SignInRequest) {
         message: "User email or password is incorrect",
       };
     }
-    // need to create token to-do
+    // generate token and store it as http-only
+    const token = generateToken({
+      id: selectUser.id,
+      email,
+    });
+    const cookieStore = await cookies();
+    cookieStore.set("token", token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      maxAge: 15 * 60 * 1000,
+      path: "/",
+      sameSite: "strict",
+    });
 
     return {
       success: true,
