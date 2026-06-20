@@ -2,7 +2,7 @@
 
 A full stack productivity app to organize your work — create projects, manage tasks, and track progress.
 
-## Live → [taskforge-teal.vercel.app](https://taskforge-teal.vercel.app)**
+## Live → https://taskforge.tanujcodex.com/
 
 ---
 
