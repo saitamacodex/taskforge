@@ -2,7 +2,7 @@
 
 A full stack productivity app to organize your work — create projects, manage tasks, and track progress.
 
-## Live →  taskforge.tanujcodex.com
+## Live →  [taskforge.tanujcodex.com](https://taskforge.tanujcodex.com/)
 
 ---
 
