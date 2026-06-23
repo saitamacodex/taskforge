@@ -4,8 +4,6 @@ A full stack productivity app to organize your work — create projects, manage 
 
 ## Live →  https://taskforge.tanujcodex.com/
 
----
-
 ## Tech Stack
 
 |            |                         |
